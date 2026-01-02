@@ -1,0 +1,48 @@
+package backend.service;
+
+import backend.dto.JobRequest;
+import backend.dto.JobResponse;
+import backend.entity.Job;
+import backend.repository.JobRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class JobService {
+
+    private final JobRepository jobRepository;
+
+    public JobService(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
+    }
+
+    public JobResponse createJob(JobRequest request) {
+        Job job = new Job();
+        job.setTitle(request.getTitle());
+        job.setCompany(request.getCompany());
+        job.setLocation(request.getLocation());
+        job.setDescription(request.getDescription());
+
+        Job saved = jobRepository.save(job);
+        return mapToResponse(saved);
+    }
+
+    public List<JobResponse> getAllJobs() {
+        return jobRepository.findAll()
+                .stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
+
+    private JobResponse mapToResponse(Job job) {
+        JobResponse response = new JobResponse();
+        response.setId(job.getId());
+        response.setTitle(job.getTitle());
+        response.setCompany(job.getCompany());
+        response.setLocation(job.getLocation());
+        response.setDescription(job.getDescription());
+        return response;
+    }
+}
