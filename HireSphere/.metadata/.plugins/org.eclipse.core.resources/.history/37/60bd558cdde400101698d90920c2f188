@@ -1,7 +1,0 @@
-package com.hiresphere.backend.service;
-
-import com.hiresphere.backend.entity.User;
-
-public interface UserService {
-    User saveUser(User user);
-}

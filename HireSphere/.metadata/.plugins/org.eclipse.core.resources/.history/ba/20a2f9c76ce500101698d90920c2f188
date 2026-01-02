@@ -1,5 +1,0 @@
-package com.hiresphere.backend.service.impl;
-
-public class UserServiceImpl {
-
-}

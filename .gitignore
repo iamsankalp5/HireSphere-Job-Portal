@@ -1,16 +1,22 @@
-# Node
-node_modules/
-dist/
-.env
-
 # Java / Spring Boot
 target/
 *.log
+*.class
 
-# IDE
-.vscode/
+# Node / React
+node_modules/
+dist/
+build/
+
+# Environment files
+.env
+
+# IDE files
+.metadata/
 .idea/
+.vscode/
 *.iml
 
-# OS
+# OS files
 .DS_Store
+Thumbs.db
